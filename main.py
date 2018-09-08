@@ -1,4 +1,5 @@
 import nltk
+import file_build
 import linecache
 porter = nltk.PorterStemmer()
 from nltk.corpus import words
@@ -46,23 +47,25 @@ def get_poem(nf, vf, adjf, num_lines):
 
 
 # Main Program
+# Words from corpora
+brown_tagged = brown.tagged_words()
 
 # Build files of sorted words
-nouns_file = "noun_file.txt"
-poss_nouns_file = "possessive_noun_file.txt"
-plural_nouns_file = "plural_noun_file.txt"
-poss_pl_nouns_file = "possessive_plural_noun_file.txt"
-sing_non_third_verbs_file = "sing_non_third_verb_file.txt"
-sing_third_verbs_file = "sing_third_verbs_file.txt"
-adjs_file = "adj_file.txt"
-brown_tagged = brown.tagged_words()
-get_part_of_speech(brown_tagged, poss_nouns_file, "NN$")
-get_part_of_speech(brown_tagged, plural_nouns_file, "NNS")
-get_part_of_speech(brown_tagged, poss_pl_nouns_file, "NNS$")
-get_part_of_speech(brown_tagged, nouns_file, "NN")
-get_part_of_speech(brown_tagged, sing_non_third_verbs_file, "VBP")
-get_part_of_speech(brown_tagged, sing_third_verbs_file, "VBZ")
-get_part_of_speech(brown_tagged, adjs_file, "JJ")
+my_files = file_build.FileBuilder()
+
+my_files.build_files(brown_tagged)
+
+
+
+# nouns_file = "noun_file.txt"
+# poss_nouns_file = "possessive_noun_file.txt"
+# plural_nouns_file = "plural_noun_file.txt"
+# poss_pl_nouns_file = "possessive_plural_noun_file.txt"
+# sing_non_third_verbs_file = "sing_non_third_verb_file.txt"
+# sing_third_verbs_file = "sing_third_verbs_file.txt"
+# adjs_file = "adj_file.txt"
+# build_files(nouns_file, poss_pl_nouns_file, plural_nouns_file,
+#             poss_pl_nouns_file, sing_non_third_verbs_file, sing_third_verbs_file, adjs_file)
 
 # Write a poem
-get_poem(nouns_file, sing_third_verbs_file, adjs_file, 5)
+get_poem(my_files.scn_file, my_files.st_verbs_file, my_files.adjs_file, 5)
