@@ -29,31 +29,22 @@ class Poems:
 
 
     # Write a line using a known pattern at the specified index
-    def generate_line(self, pattern_index):
+    def generate_line(self, pattern_index, file_builder_obj):
         # If it knows at least one pattern
         if len(self.line_patterns) != 0:
             # Tokenize this pattern
             tokens = nltk.word_tokenize(self.line_patterns[pattern_index])
 
             # Write a line
+            new_line = ""
             for pos in tokens:
                 # Convert to string
                 i = str(pos)
-                # Identify the part of speech
-                print(i)
-                # Nouns
-                if "NN" in i:
-                    print("This is a Noun.")
-                elif "DT" in i:
-                    print("This is a Determiner or a Predeterminer.")
-                elif "JJ" in i:
-                    print("This is an Adjective.")
-                elif "VB" in i:
-                    print("This is a Verb.")
-                elif "RB" in i:
-                    print("This is an Adverb.")
-                else:
-                    print("This part of speech is unknown.")
+
+                # Choose word
+                new_word = file_builder_obj.choose_random_word(pos)
+                new_line += new_word + " "
+            return new_line
         else:
             print("Error: No line patterns known.")
 
