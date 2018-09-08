@@ -1,7 +1,8 @@
 # Author: Laura Lund
 # Project: Poetry-Machine
 import os
-
+import linecache
+import random
 
 class FileBuilder:
     # Dictionary of files containing word banks for each part of speech
@@ -25,64 +26,115 @@ class FileBuilder:
                 'file_name': file_dir + 'poss_plc_noun.txt',
                 'tag': 'NNS$'
             },
+        },
+        'Pronoun': {
+            'pers_pro': {
+                'file_name': file_dir + 'per_pronoun.txt',
+                'tag': 'PRP'
+            },
+            'poss_pro': {
+                'file_name': file_dir + 'poss_pronoun.txt',
+                'tag': 'PRP$'
+            }
+        },
+        'Verb': {
+            'third_person_sing_pres_verb': {
+                'file_name': file_dir + 'tpsp_verb.txt',
+                'tag': 'VBZ'
+            },
+            'not_third_person_sing_pres_verb': {
+                'file_name': file_dir + 'not_tpsp_verb.txt',
+                'tag': 'VBP'
+            }
+        },
+        'Adverb': {
+            'adverb': {
+                'file_name': file_dir + 'adverb.txt',
+                'tag': 'RB'
+            },
+            'comp_adverb': {
+                'file_name': file_dir + 'comp_adverb.txt',
+                'tag': 'RBR'
+            },
+            'sup_adverb': {
+                'file_name': file_dir + 'sup_adverb.txt',
+                'tag': 'RBS'
+            }
+        },
+        'Adjective': {
+            'adjective': {
+                'file_name': file_dir + 'adjective.txt',
+                'tag': 'JJ'
+            },
+            'comp_adj': {
+                'file_name': file_dir + 'comp_adj.txt',
+                'tag': 'JJR'
+            },
+            'sup_adverb': {
+                'file_name': file_dir + 'sup_adj.txt',
+                'tag': 'JJS'
+            }
+        },
+        'Prepositions_Sub_Conj': {
+            'prep_sub_conj': {
+                'file_name': file_dir + 'prep_sub_conj.txt',
+                'tag': 'IN'
+            }
+        },
+        'Determiner': {
+            'determiner': {
+                'file_name': file_dir + 'determiner.txt',
+                'tag': 'DT'
+            }
+        },
+        'To': {
+            'to': {
+                'file_name': file_dir + 'to.txt',
+                'tag': 'TO'
+            }
+        },
+        'Interjection': {
+            'inter': {
+                'file_name': file_dir + 'interjection.txt',
+                'tag': 'UH'
+            }
+        },
+        'Wh_words': {
+            'wh_det': {
+                'file_name': file_dir + 'wh_det.txt',
+                'tag': 'WDT'
+            },
+            'wh_pro': {
+                'file_name': file_dir + 'who_pro.txt',
+                'tag': 'WP'
+            },
+            'wh_poss_pro': {
+                'file_name': file_dir + 'wh_poss_pro.txt',
+                'tag': 'WP$'
+            },
+            'wh_advb': {
+                'file_name': file_dir + 'wh_advb.txt',
+                'tag': 'WRB'
+            }
+        },
+        'Coor_conjunction': {
+            'coor_conj': {
+                'file_name': file_dir + 'coor_conj.txt',
+                'tag': 'CC'
+            }
         }
     }
 
-    # # Singular common nouns
-    # scn_file = "sc_noun_file.txt"
-    # scn_tag = "NN"            if self.file_dictionary[pos_category][i]['tag'] == pos:
-    #
-    # # Singular possessive nouns
-    # sp_nouns_file = "sp_noun_file.txt"
-    # spn_tag = "NN$"
-    #
-    # # Plural common nouns
-    # pl_nouns_file = "pl_noun_file.txt"
-    # pln_tag = "NNS"
-    #
-    # # Possessive plural nouns
-    # ppl_nouns_file = "ppl_noun_file.txt"
-    # ppln_tag = "NNS$"
-
-    # Singular verbs, not third person
-    snt_verbs_file = "snt_verb_file.txt"
-    sntv_tag = "VBP"
-
-    # Singular third person verbs
-    st_verbs_file = "st_verbs_file.txt"
-    stv_tag = "VBZ"
-
-    # Common adjectives
-    adjs_file = "adj_file.txt"
-    adj_tag = "JJ"
-
-    # Comparative adjectives
-    comp_adjs_file = "comp_adj_file.txt"
-    compadj_tag = "JJR"
-
-    # Superlative adjectives
-    sup_adjs_file = "sup_adj_file.txt"
-    supadj_tag = "JJS"
-
-    # Common adverbs
-    advbs_file = "advb_file.txt"
-    adv_tag = "RB"
-
-    # Comparative adverbs
-    comp_advb_file = "comp_advb_file.txt"
-    compadvb_tag = "RBR"
-
-    # Superlative adverbs
-    sup_advb_file = "sup_advb_file.txt"
-    supadvb_tag = "RBS"
-
+    # Builds individual files in each part of speech category
     def build_file(self, pos_category, tagged):
-        # Locate the file that matches pos tag
+        # Locate the file t hat matches pos tag
         for i in self.file_dictionary[pos_category]:
             word_file = open(self.file_dictionary[pos_category][i]['file_name'], 'w')
             for pair in tagged:
                 if pair[1] == self.file_dictionary[pos_category][i]['tag']:
+                    # Only save common
                     if pair[0].islower():
+                        # This allows for duplicates, may change in future version
                         word_file.write(pair[0] + '\n')
             word_file.close()
 
@@ -91,16 +143,9 @@ class FileBuilder:
         if not os.path.exists(self.file_dir):
             os.makedirs(self.file_dir)
 
-        self.build_file('Noun', tagged)
-
-        # self.build_file(self.snt_verbs_file, self.sntv_tag, tagged)
-        # self.build_file(self.st_verbs_file, self.stv_tag, tagged)
-        # self.build_file(self.adjs_file, self.adj_tag, tagged)
-        # self.build_file(self.comp_adjs_file, self.compadj_tag, tagged)
-        # self.build_file(self.sup_adjs_file, self.supadj_tag, tagged)
-        # self.build_file(self.advbs_file, self.adj_tag, tagged)
-        # self.build_file(self.comp_advb_file, self.compadvb_tag, tagged)
-        # self.build_file(self.sup_advb_file, self.supadvb_tag, tagged)
+        # Build files for all categories in the dictionary
+        for i in self.file_dictionary:
+            self.build_file(i, tagged)
 
 
     # Find file line count
@@ -109,8 +154,17 @@ class FileBuilder:
 
 
     # Choose a random word from the file for specified part of speech
-    # def choose_random_word(self, pos):
-    #     line_count = file_line_count(file_name)
-    #     rand_number = random.randrange(0, line_count - 1)
-    #     word = linecache.getline(file_name, rand_number)
-    #     return word[:len(word) - 1]
+    def choose_random_word(self, pos):
+        # Locate the correct file
+        for i in self.file_dictionary:
+            for j in self.file_dictionary[i]:
+                if self.file_dictionary[i][j]['tag'] == pos:
+                    # Make sure there is content in this file
+                    line_count = self.file_line_count(self.file_dictionary[i][j]['file_name'])
+                    if line_count > 0:
+                        # Get a random word from this file
+                        rand_number = random.randrange(0, line_count - 1)
+                        word = linecache.getline(self.file_dictionary[i][j]['file_name'], rand_number)
+                        return word[:len(word) - 1]
+                    else:
+                        return 'ERROR: NO ' + pos + ' WORDS STORED'
