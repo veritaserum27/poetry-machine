@@ -59,8 +59,11 @@ brown_tagged = brown.tagged_words()
 
 # Build files of sorted words
 my_files = file_build.FileBuilder()
-#my_files.build_files(brown_tagged)
+my_files.build_files(brown_tagged)
 #my_files.build_files(gutenberg_tagged)
+print(my_files.file_dictionary['Noun']['sing_comm']['file_name'])
+print(my_files.file_dictionary['Noun']['sing_comm']['tag'])
+print()
 
 # Extract pattern from sample line
 my_poem_pattern = poem_builder.Poems()

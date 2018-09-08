@@ -55,7 +55,7 @@ class Poems:
                 else:
                     print("This part of speech is unknown.")
         else:
-            print("No line patterns known.")
+            print("Error: No line patterns known.")
 
 
     # Poem Builder: uses patterns, arg is a FileBuilder object?
