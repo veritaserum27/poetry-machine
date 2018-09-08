@@ -69,6 +69,7 @@ print(my_files.choose_random_word('NN'))
 
 # Extract pattern from sample line
 my_poem_pattern = poem_builder.Poems()
+
 line0 = """The yellow sun is really bright"""
 my_poem_pattern.pattern_extractor(line0)
 print("After extraction: " + str(my_poem_pattern.line_patterns))
@@ -77,10 +78,10 @@ my_poem_pattern.pattern_extractor(line1)
 print("After extraction: " + str(my_poem_pattern.line_patterns))
 print()
 print("Generated line 0: ")
-my_poem_pattern.generate_line(0)
+print(my_poem_pattern.generate_line(0, my_files))
 print()
 print("Generated line 1: ")
-my_poem_pattern.generate_line(1)
+print(my_poem_pattern.generate_line(1, my_files))
 
 
 
