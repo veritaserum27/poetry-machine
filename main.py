@@ -1,5 +1,9 @@
+# Author: Laura Lund
+# Project: Poetry-Machine
+
 import nltk
 import file_build
+import poem_builder
 import linecache
 from nltk.tokenize import word_tokenize
 porter = nltk.PorterStemmer()
@@ -49,14 +53,30 @@ def get_poem(nf, vf, adjf, advbf, num_lines):
 
 # Main Program
 # Words from corpora
-#brown_tagged = brown.tagged_words()
-gutenberg_words = gutenberg.words()
-gutenberg_tagged = nltk.pos_tag(gutenberg_words)
+brown_tagged = brown.tagged_words()
+#gutenberg_words = gutenberg.words()
+#gutenberg_tagged = nltk.pos_tag(gutenberg_words)
 
 # Build files of sorted words
 my_files = file_build.FileBuilder()
 #my_files.build_files(brown_tagged)
 #my_files.build_files(gutenberg_tagged)
 
+# Extract pattern from sample line
+my_poem_pattern = poem_builder.Poems()
+line0 = """The yellow sun is really bright"""
+my_poem_pattern.pattern_extractor(line0)
+print("After extraction: " + str(my_poem_pattern.line_patterns))
+line1 = """Very merry people run fast"""
+my_poem_pattern.pattern_extractor(line1)
+print("After extraction: " + str(my_poem_pattern.line_patterns))
+print()
+print("Generated line 0: ")
+my_poem_pattern.generate_line(0)
+print()
+print("Generated line 1: ")
+my_poem_pattern.generate_line(1)
+
+
 # Write a poem
-get_poem(my_files.scn_file, my_files.st_verbs_file, my_files.adjs_file, my_files.advbs_file, 5)
+#get_poem(my_files.scn_file, my_files.st_verbs_file, my_files.adjs_file, my_files.advbs_file, 5)

@@ -1,3 +1,6 @@
+# Author: Laura Lund
+# Project: Poetry-Machine
+
 class FileBuilder:
     # Singular common nouns
     scn_file = "sc_noun_file.txt"
