@@ -27,6 +27,26 @@ class FileBuilder:
     adjs_file = "adj_file.txt"
     adj_tag = "JJ"
 
+    # Comparative adjectives
+    comp_adjs_file = "comp_adj_file.txt"
+    compadj_tag = "JJR"
+
+    # Superlative adjectives
+    sup_adjs_file = "sup_adj_file.txt"
+    supadj_tag = "JJS"
+
+    # Common adverbs
+    advbs_file = "advb_file.txt"
+    adv_tag = "RB"
+
+    # Comparative adverbs
+    comp_advb_file = "comp_advb_file.txt"
+    compadvb_tag = "RBR"
+
+    # Superlative adverbs
+    sup_advb_file = "sup_advb_file.txt"
+    supadvb_tag = "RBS"
+
     def build_file(self, file_name, pos, tagged):
         word_file = open(file_name, "w")
         for pair in tagged:
@@ -43,3 +63,8 @@ class FileBuilder:
         self.build_file(self.snt_verbs_file, self.sntv_tag, tagged)
         self.build_file(self.st_verbs_file, self.stv_tag, tagged)
         self.build_file(self.adjs_file, self.adj_tag, tagged)
+        self.build_file(self.comp_adjs_file, self.compadj_tag, tagged)
+        self.build_file(self.sup_adjs_file, self.supadj_tag, tagged)
+        self.build_file(self.advbs_file, self.adj_tag, tagged)
+        self.build_file(self.comp_advb_file, self.compadvb_tag, tagged)
+        self.build_file(self.sup_advb_file, self.supadvb_tag, tagged)

@@ -1,6 +1,7 @@
 import nltk
 import file_build
 import linecache
+from nltk.tokenize import word_tokenize
 porter = nltk.PorterStemmer()
 from nltk.corpus import words
 from nltk.corpus import stopwords
@@ -34,38 +35,28 @@ def choose_random_word(file_name):
 
 
 # Generate a line of poetry
-def get_line_poetry(nf, vf, adjf):
-    line = choose_random_word(adjf).capitalize() + " " + choose_random_word(nf) + " " + choose_random_word(vf)
+def get_line_poetry(nf, vf, adjf, advbf):
+    line = choose_random_word(adjf).capitalize() + " " + choose_random_word(nf) + " " + choose_random_word(vf) + " " + choose_random_word(advbf)
     return line
 
 # Generate a poem
-def get_poem(nf, vf, adjf, num_lines):
+def get_poem(nf, vf, adjf, advbf, num_lines):
     count = 0
     while count < num_lines:
-        print(get_line_poetry(nf, vf, adjf))
+        print(get_line_poetry(nf, vf, adjf, advbf))
         count += 1
 
 
 # Main Program
 # Words from corpora
-brown_tagged = brown.tagged_words()
+#brown_tagged = brown.tagged_words()
+gutenberg_words = gutenberg.words()
+gutenberg_tagged = nltk.pos_tag(gutenberg_words)
 
 # Build files of sorted words
 my_files = file_build.FileBuilder()
-
-my_files.build_files(brown_tagged)
-
-
-
-# nouns_file = "noun_file.txt"
-# poss_nouns_file = "possessive_noun_file.txt"
-# plural_nouns_file = "plural_noun_file.txt"
-# poss_pl_nouns_file = "possessive_plural_noun_file.txt"
-# sing_non_third_verbs_file = "sing_non_third_verb_file.txt"
-# sing_third_verbs_file = "sing_third_verbs_file.txt"
-# adjs_file = "adj_file.txt"
-# build_files(nouns_file, poss_pl_nouns_file, plural_nouns_file,
-#             poss_pl_nouns_file, sing_non_third_verbs_file, sing_third_verbs_file, adjs_file)
+#my_files.build_files(brown_tagged)
+#my_files.build_files(gutenberg_tagged)
 
 # Write a poem
-get_poem(my_files.scn_file, my_files.st_verbs_file, my_files.adjs_file, 5)
+get_poem(my_files.scn_file, my_files.st_verbs_file, my_files.adjs_file, my_files.advbs_file, 5)
