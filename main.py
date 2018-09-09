@@ -63,20 +63,22 @@ my_files = file_build.FileBuilder()
 my_files.build_files(gutenberg_tagged)
 
 # Extract pattern from sample line
-my_poem_pattern = poem_builder.Poems()
+my_poem = poem_builder.Poems()
 
-line0 = """The yellow sun is really bright"""
-my_poem_pattern.pattern_extractor(line0)
-print("After extraction: " + str(my_poem_pattern.line_patterns))
-line1 = """Very merry people run fast"""
-my_poem_pattern.pattern_extractor(line1)
-print("After extraction: " + str(my_poem_pattern.line_patterns))
+#line0 = """The yellow sun is really bright"""
+#my_poem_pattern.pattern_extractor(line0)
+#print("After extraction: " + str(my_poem_pattern.line_patterns))
+#line1 = """Very merry people run fast"""
+#my_poem_pattern.pattern_extractor(line1)
+my_poem.read_pattern('vogonesque_samples.txt')
 print()
-print("Generated line 0: ")
-print(my_poem_pattern.generate_line(0, my_files))
+print("After extraction: " + str(my_poem.line_patterns))
 print()
-print("Generated line 1: ")
-print(my_poem_pattern.generate_line(1, my_files))
+#print("Generated line 0: ")
+#print(my_poem_pattern.generate_line(0, my_files))
+#print()
+#print("Generated line 1: ")
+#print(my_poem_pattern.generate_line(1, my_files))
 
 
 

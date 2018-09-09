@@ -1,7 +1,7 @@
 # Author: Laura Lund
 # Project: Poetry-Machine
 import nltk
-
+import os.path
 
 class Poems:
     # Grammar line patterns
@@ -22,6 +22,7 @@ class Poems:
                 pattern += " " + str(i[1])
 
         # Add this pattern to the list of known patterns
+        print("Just added pattern: " + pattern)
         self.line_patterns.append(pattern)
 
 
@@ -47,6 +48,16 @@ class Poems:
             return new_line
         else:
             print("Error: No line patterns known.")
+
+    # Read patterns from a file
+    def read_pattern(self, file_name):
+        if os.path.isfile(file_name):
+            read_file = open(file_name, "r")
+            for line in read_file:
+                print("Just read: " + line)
+                # Store the pattern of this line
+                self.pattern_extractor(line)
+
 
 
     # Poem Builder: uses patterns, arg is a FileBuilder object?
