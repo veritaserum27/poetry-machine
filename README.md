@@ -12,4 +12,5 @@ python3.x, nltk v. 3.3, pip, setuptools, six
 On command line in program directory: python3 main.py
 
 # Output
-Lines of text are sent to stdout
+1. Lines of poetry (text) are sent to stdout
+2. A directory called word_files holds text files with collections of words for each part of speech fed into the machine
