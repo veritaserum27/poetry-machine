@@ -9,6 +9,21 @@ import random
 class Poems:
     # Grammar line patterns
     line_patterns = []
+    pattern_dictionary = {
+
+    }
+
+    # Add new pattern to dictionary
+    def add_pattern_dictionary(self, pattern):
+        self.pattern_dictionary[pattern] = 1
+        #print("Added pattern '" + pattern + "' with count: " + str(self.pattern_dictionary[pattern]))
+
+
+    # Update pattern frequency count in dictionary
+    def update_pattern_dictionary(self, pattern):
+        self.pattern_dictionary[pattern] += 1
+        #print("New count for pattern '" + pattern + "': " + str(self.pattern_dictionary[pattern]))
+
 
     # Extract words and patterns
     def knowledge_extractor(self, file_builder_obj, sentence):
@@ -40,9 +55,12 @@ class Poems:
             for ptrn in self.line_patterns:
                 if pattern == ptrn:
                     new_pattern = False
+                    # Update count in dictionary
+                    self.update_pattern_dictionary(pattern)
         if new_pattern:
             # Add this pattern to the list of known patterns
             self.line_patterns.append(pattern)
+            self.add_pattern_dictionary(pattern)
 
 
     # Read patterns from a file
