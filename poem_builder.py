@@ -39,7 +39,7 @@ class Poems:
         # If it knows at least one pattern
         if len(self.line_patterns) != 0:
             # Choose a random pattern
-            rand_max = len(self.line_patterns)
+            rand_max = len(self.line_patterns) - 1
             rand_index = random.randrange(0, rand_max)
 
             # Tokenize this pattern
@@ -47,14 +47,15 @@ class Poems:
 
             # Write a line
             new_line = ""
+            bad_pos = ""
             for pos in tokens:
                 # Convert to string
                 i = str(pos)
 
                 # Choose word
                 new_word = file_builder_obj.choose_random_word(pos)
-                #print("new_word:" + new_word)
                 new_line += new_word + " "
+                #print("line so far: " + new_line + ", added: " + i)
             if new_line == "":
                 new_line = "EMPTY LINE"
             return new_line
