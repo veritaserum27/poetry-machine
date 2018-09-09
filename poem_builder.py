@@ -31,6 +31,8 @@ class Poems:
             else:
                 pattern += " " + str(i[1])
 
+        # Check if we have this pattern
+
         # Add this pattern to the list of known patterns
         self.line_patterns.append(pattern)
 
@@ -57,15 +59,12 @@ class Poems:
 
             # Write a line
             new_line = ""
-            bad_pos = ""
             for pos in tokens:
                 # Convert to string
-                i = str(pos)
 
                 # Choose word
                 new_word = file_builder_obj.choose_random_word(pos)
                 new_line += new_word + " "
-                #print("line so far: " + new_line + ", added: " + i)
             if new_line == "":
                 new_line = "EMPTY LINE"
             return new_line

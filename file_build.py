@@ -131,14 +131,32 @@ class FileBuilder:
         new_file_name = self.file_dir + pos_tag + '_file.txt'
         self.file_dictionary[pos_tag] = new_file_name
 
+        # If the file doesn't exist, create it
+        if not os.path.exists(new_file_name):
+            new_file = open(new_file_name, 'w')
+            new_file.close()
+
     # Adds a word not in the dictionary
     def add_word(self, pos_tag, new_word):
+        found_word = False
+
         # Locate the correct file for reading
-        # Check if this word is in file
-        # If not, open for writing
-        word_file = open(self.file_dictionary[pos_tag], 'a+')
-        word_file.write(new_word + '\n')
-        word_file.close()
+        # If file not empty, check its contents
+        if self.file_line_count(self.file_dictionary[pos_tag]) != 0:
+            read_file = open(self.file_dictionary[pos_tag], 'r')
+
+            # Check if this word is in file
+            for line in read_file:
+                if new_word in line:
+                    found_word = True
+                    continue
+            read_file.close()
+
+        # If word not found, open file for writing
+        if not found_word:
+            word_file = open(self.file_dictionary[pos_tag], 'a')
+            word_file.write(new_word + '\n')
+            word_file.close()
 
 
     def has_key(self, key):
@@ -159,17 +177,6 @@ class FileBuilder:
         self.update_dictionary(pos_tag)
         return self.file_dictionary[pos_tag]
 
-        # This function should really just be about adding the file if it doesn't exist
-        # for pair in tagged:
-        #     for key in self.file_dictionary.items():
-        #         if pair[1] == key:
-        #             key_found = True
-        #             self.add_word(pair[1], pair[0])
-        #     if key_found == False:
-        #         # add key
-        #         self.build_dictionary(pair[1])
-        #         #Add word
-        #         self.add_word(pair[1], pair[0])
 
     # Build files using a collection of tagged words
     def build_files(self, tagged):
@@ -182,12 +189,9 @@ class FileBuilder:
             # Get the file
             self.get_file(pair[1])
 
-            # Add the word
-            self.add_word(pair[1], pair[0])
-
-        # Build files for all categories in the dictionary
-        # for i in self.file_dictionary:
-        #     self.build_file(i, tagged)
+            # Add the word if it doesn't have these symbols
+            if ',' or ' ' or '.' or '!' or '?' or ':' or ';' not in pair[0]:
+                self.add_word(pair[1], pair[0])
 
 
     # Find file line count
@@ -202,10 +206,13 @@ class FileBuilder:
             if key == pos_tag:
                     # Make sure there is content in this file
                     line_count = self.file_line_count(self.file_dictionary[pos_tag])
-                    if line_count > 0:
+                    if line_count > 1:
                         # Get a random word from this file
-                        rand_number = random.randrange(0, line_count - 1)
+                        rand_number = random.randrange(1, line_count)
                         word = linecache.getline(self.file_dictionary[pos_tag], rand_number)
+                        return word[:len(word) - 1]
+                    elif line_count == 1:
+                        word = linecache.getline(self.file_dictionary[pos_tag], 1)
                         return word[:len(word) - 1]
                     else:
                         return 'ERROR: NO ' + pos_tag + ' WORDS STORED'
