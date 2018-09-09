@@ -54,14 +54,29 @@ def get_poem(nf, vf, adjf, advbf, num_lines):
 # Main Program
 # Words from corpora
 #brown_tagged = brown.tagged_words()
+#print(brown_tagged)
 #brown_words = brown.words()
 #gutenberg_words = gutenberg.words()
 #gutenberg_tagged = nltk.pos_tag(gutenberg_words)
 
+#brown_fd = nltk.FreqDist(brown_tagged)
+#common_brown = [wt[0] for (wt, _) in brown_fd.most_common(15000)]
+#print(common_brown)
+#brown_tagged = nltk.pos_tag(common_brown)
+#print(brown_tagged)
+
+#gutenberg_fd = nltk.FreqDist(gutenberg_tagged)
+#common_gutenberg = gutenberg_fd.most_common(15000)
+#gutenberg_tagged = nltk.pos_tag(common_gutenberg)
+
+#print("Built common words")
+
 # Build files of sorted words
 my_files = file_build.FileBuilder()
 #my_files.build_files(brown_tagged)
+#print("Built common brown")
 #my_files.build_files(gutenberg_tagged)
+#print("Built common gutenberg")
 
 # Extract pattern from sample line
 my_poem = poem_builder.Poems()
@@ -71,8 +86,10 @@ my_poem = poem_builder.Poems()
 #print("After extraction: " + str(my_poem_pattern.line_patterns))
 #line1 = """Very merry people run fast"""
 #my_poem_pattern.pattern_extractor(line1)
-my_poem.read_pattern('vogonesque_samples.txt')
-print()
-print("After extraction: " + str(my_poem.line_patterns))
-print()
+my_poem.read_knowledge('vogonesque_samples.txt', my_files)
+#print()
+#print("After extraction: " + str(my_poem.line_patterns))
+#print(my_files.file_dictionary)
+
+#print()
 my_poem.generate_poem(my_files)

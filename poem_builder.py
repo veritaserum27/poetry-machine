@@ -8,11 +8,20 @@ class Poems:
     # Grammar line patterns
     line_patterns = []
 
-    # Learn pattern of one line of input
-    def pattern_extractor(self, sentence):
+    # Extract words and patterns
+    def knowledge_extractor(self, file_builder_obj, sentence):
         # Tokenize and tag with parts of speech
         tokens = nltk.word_tokenize(sentence)
         tagged = nltk.pos_tag(tokens)
+
+        # Save the word in a file
+        file_builder_obj.build_files(tagged)
+
+        # Save the pos pattern
+        self.pattern_extractor(tagged)
+
+    # Learn pattern of one line of input
+    def pattern_extractor(self, tagged):
         pattern = ""
 
         # Extract the pattern
@@ -25,13 +34,14 @@ class Poems:
         # Add this pattern to the list of known patterns
         self.line_patterns.append(pattern)
 
+
     # Read patterns from a file
-    def read_pattern(self, file_name):
+    def read_knowledge(self, file_name, file_builder_obj):
         if os.path.isfile(file_name):
             read_file = open(file_name, "r")
             for line in read_file:
                 # Store the pattern of this line
-                self.pattern_extractor(line)
+                self.knowledge_extractor(file_builder_obj, line)
 
 
     # Write a line using a known pattern
