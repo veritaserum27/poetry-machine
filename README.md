@@ -9,7 +9,7 @@ python3.x, nltk v. 3.3, pip, setuptools, six
 2. Store bad_poetry and good_poetry folders in same directory as program.
 
 # How to Run
-python3 main.py
+On command line in program directory: python3 main.py
 
 # Output
 Lines of text are sent to stdout
