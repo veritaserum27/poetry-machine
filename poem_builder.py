@@ -1,5 +1,7 @@
 # Author: Laura Lund
 # Project: Poetry-Machine
+# OSU Hackathon Fall 2018
+
 import nltk
 import os.path
 import random

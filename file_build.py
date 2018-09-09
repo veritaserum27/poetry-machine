@@ -1,5 +1,7 @@
 # Author: Laura Lund
 # Project: Poetry-Machine
+# OSU Hackathon Fall 2018
+
 import os
 import linecache
 import random
@@ -10,120 +12,7 @@ class FileBuilder:
     # Dictionary is built from text the machine reads
     file_dir = './word_files/'
     file_dictionary = {
-        # 'Noun': {
-        #     'sing_comm': {
-        #         'file_name': file_dir + 'sc_noun.txt',
-        #         'tag': 'NN'
-        #     },
-        #     'poss_sing_comm': {
-        #         'file_name': file_dir + 'poss_sc_noun.txt',
-        #         'tag': 'NN$'
-        #     },
-        #     'plural_comm': {
-        #         'file_name': file_dir + 'plc_noun.txt',
-        #         'tag': 'NNS'
-        #     },
-        #     'poss_plural_comm': {
-        #         'file_name': file_dir + 'poss_plc_noun.txt',
-        #         'tag': 'NNS$'
-        #     },
-        # },
-        # 'Pronoun': {
-        #     'pers_pro': {
-        #         'file_name': file_dir + 'per_pronoun.txt',
-        #         'tag': 'PRP'
-        #     },
-        #     'poss_pro': {
-        #         'file_name': file_dir + 'poss_pronoun.txt',
-        #         'tag': 'PRP$'
-        #     }
-        # },
-        # 'Verb': {
-        #     'third_person_sing_pres_verb': {
-        #         'file_name': file_dir + 'tpsp_verb.txt',
-        #         'tag': 'VBZ'
-        #     },
-        #     'not_third_person_sing_pres_verb': {
-        #         'file_name': file_dir + 'not_tpsp_verb.txt',
-        #         'tag': 'VBP'
-        #     }
-        # },
-        # 'Adverb': {
-        #     'adverb': {
-        #         'file_name': file_dir + 'adverb.txt',
-        #         'tag': 'RB'
-        #     },
-        #     'comp_adverb': {
-        #         'file_name': file_dir + 'comp_adverb.txt',
-        #         'tag': 'RBR'
-        #     },
-        #     'sup_adverb': {
-        #         'file_name': file_dir + 'sup_adverb.txt',
-        #         'tag': 'RBS'
-        #     }
-        # },
-        # 'Adjective': {
-        #     'adjective': {
-        #         'file_name': file_dir + 'adjective.txt',
-        #         'tag': 'JJ'
-        #     },
-        #     'comp_adj': {
-        #         'file_name': file_dir + 'comp_adj.txt',
-        #         'tag': 'JJR'
-        #     },
-        #     'sup_adverb': {
-        #       build  'file_name': file_dir + 'sup_adj.txt',
-        #         'tag': 'JJS'
-        #     }
-        # },
-        # 'Prepositions_Sub_Conj': {
-        #     'prep_sub_conj': {
-        #         'file_name': file_dir + 'prep_sub_conj.txt',
-        #         'tag': 'IN'
-        #     }
-        # },
-        # 'Determiner': {
-        #     'determiner': {][j]['file_name'
-        #         'file_name': file_dir + 'determiner.txt',
-        #         'tag': 'DT'
-        #     }
-        # },
-        # 'To': {
-        #     'to': {
-        #       build  'file_name': file_dir + 'to.txt',
-        #         'tag': 'TO'
-        #     }
-        # },
-        # 'Interjection': {
-        #     'inter': {
-        #         'file_name': file_dir + 'interjection.txt',
-        #         'tag': 'UH'
-        #     }
-        # },
-        # 'Wh_words': {
-        #     'wh_det': {
-        #         'file_name': file_dir + 'wh_det.txt',
-        #         'tag': 'WDT'
-        #     },
-        #     'wh_pro': {
-        #         'file_name': file_dir + 'who_pro.txt',
-        #         'tag': 'WP'
-        #     },
-        #     'wh_poss_pro': {
-        #         'file_name': file_dir + 'wh_poss_pro.txt',
-        #         'tag': 'WP$'
-        #     },
-        #     'wh_advb': {
-        #         'file_name': file_dir + 'wh_advb.txt',
-        #         'tag': 'WRB'
-        #     }
-        # },
-        # 'Coor_conjunction': {
-        #     'coor_conj': {
-        #         'file_name': file_dir + 'coor_conj.txt',
-        #         'tag': 'CC'
-        #     }
-        # }
+
     }
 
     # Updates a dictionary of items stored as POS-tag: word file pairs
@@ -155,10 +44,6 @@ class FileBuilder:
         # If word not found, open file for writing
         if not found_word:
             word_file = open(self.file_dictionary[pos_tag], 'a')
-
-            # lowercase if not a proper noun
-            if 'NNP' not in pos_tag:
-                new_word.lower()
             word_file.write(new_word + '\n')
             word_file.close()
 
@@ -197,7 +82,12 @@ class FileBuilder:
 
             # Add the word if it doesn't have these symbols
             if pair[0] not in '.,!? _:;':
-                self.add_word(pair[1], pair[0])
+                word = pair[0]
+                # lowercase if not a proper noun
+                if word[0].isupper():
+                    if 'NNP' not in pair[1]:
+                        word = word.lower()
+                self.add_word(pair[1], word)
 
 
     # Find file line count
