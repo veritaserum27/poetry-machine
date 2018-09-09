@@ -129,7 +129,7 @@ class FileBuilder:
     def build_file(self, pos_category, tagged):
         # Locate the file t hat matches pos tag
         for i in self.file_dictionary[pos_category]:
-            word_file = open(self.file_dictionary[pos_category][i]['file_name'], 'w')
+            word_file = open(self.file_dictionary[pos_category][i]['file_name'], 'a+')
             for pair in tagged:
                 if pair[1] == self.file_dictionary[pos_category][i]['tag']:
                     # Only save common

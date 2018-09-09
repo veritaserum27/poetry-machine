@@ -54,13 +54,14 @@ def get_poem(nf, vf, adjf, advbf, num_lines):
 # Main Program
 # Words from corpora
 #brown_tagged = brown.tagged_words()
-gutenberg_words = gutenberg.words()
-gutenberg_tagged = nltk.pos_tag(gutenberg_words)
+#brown_words = brown.words()
+#gutenberg_words = gutenberg.words()
+#gutenberg_tagged = nltk.pos_tag(gutenberg_words)
 
 # Build files of sorted words
 my_files = file_build.FileBuilder()
 #my_files.build_files(brown_tagged)
-my_files.build_files(gutenberg_tagged)
+#my_files.build_files(gutenberg_tagged)
 
 # Extract pattern from sample line
 my_poem = poem_builder.Poems()
@@ -74,13 +75,4 @@ my_poem.read_pattern('vogonesque_samples.txt')
 print()
 print("After extraction: " + str(my_poem.line_patterns))
 print()
-#print("Generated line 0: ")
-#print(my_poem_pattern.generate_line(0, my_files))
-#print()
-#print("Generated line 1: ")
-#print(my_poem_pattern.generate_line(1, my_files))
-
-
-
-# Write a poem
-#get_poem(my_files.scn_file, my_files.st_verbs_file, my_files.adjs_file, my_files.advbs_file, 5)
+my_poem.generate_poem(my_files)

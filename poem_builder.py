@@ -2,6 +2,7 @@
 # Project: Poetry-Machine
 import nltk
 import os.path
+import random
 
 class Poems:
     # Grammar line patterns
@@ -22,19 +23,27 @@ class Poems:
                 pattern += " " + str(i[1])
 
         # Add this pattern to the list of known patterns
-        print("Just added pattern: " + pattern)
         self.line_patterns.append(pattern)
 
+    # Read patterns from a file
+    def read_pattern(self, file_name):
+        if os.path.isfile(file_name):
+            read_file = open(file_name, "r")
+            for line in read_file:
+                # Store the pattern of this line
+                self.pattern_extractor(line)
 
-    #  Choose a word of the selected part of speech
 
-
-    # Write a line using a known pattern at the specified index
-    def generate_line(self, pattern_index, file_builder_obj):
+    # Write a line using a known pattern
+    def generate_line(self, file_builder_obj):
         # If it knows at least one pattern
         if len(self.line_patterns) != 0:
+            # Choose a random pattern
+            rand_max = len(self.line_patterns)
+            rand_index = random.randrange(0, rand_max)
+
             # Tokenize this pattern
-            tokens = nltk.word_tokenize(self.line_patterns[pattern_index])
+            tokens = nltk.word_tokenize(self.line_patterns[rand_index])
 
             # Write a line
             new_line = ""
@@ -44,20 +53,22 @@ class Poems:
 
                 # Choose word
                 new_word = file_builder_obj.choose_random_word(pos)
+                #print("new_word:" + new_word)
                 new_line += new_word + " "
+            if new_line == "":
+                new_line = "EMPTY LINE"
             return new_line
         else:
             print("Error: No line patterns known.")
 
-    # Read patterns from a file
-    def read_pattern(self, file_name):
-        if os.path.isfile(file_name):
-            read_file = open(file_name, "r")
-            for line in read_file:
-                print("Just read: " + line)
-                # Store the pattern of this line
-                self.pattern_extractor(line)
-
+    # Write a poem
+    def generate_poem(self, file_builder_obj):
+        # Random number of lines
+        rand_lines = random.randrange(2, 14)
+        count = 0
+        while count < rand_lines:
+            print(self.generate_line(file_builder_obj))
+            count += 1
 
 
     # Poem Builder: uses patterns, arg is a FileBuilder object?
