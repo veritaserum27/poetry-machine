@@ -31,10 +31,16 @@ class Poems:
             else:
                 pattern += " " + str(i[1])
 
-        # Check if we have this pattern
 
-        # Add this pattern to the list of known patterns
-        self.line_patterns.append(pattern)
+        # Check if we have this pattern
+        new_pattern = True
+        if len(self.line_patterns) > 0:
+            for ptrn in self.line_patterns:
+                if pattern == ptrn:
+                    new_pattern = False
+        if new_pattern:
+            # Add this pattern to the list of known patterns
+            self.line_patterns.append(pattern)
 
 
     # Read patterns from a file
@@ -42,9 +48,10 @@ class Poems:
         if os.path.isfile(file_name):
             read_file = open(file_name, "r")
             for line in read_file:
-                # Store the pattern of this line
-                self.knowledge_extractor(file_builder_obj, line)
-
+                # Store the pattern of this line, but skip lines with just newline char
+                if len(line) > 1:
+                    self.knowledge_extractor(file_builder_obj, line)
+            print(self.line_patterns)
 
     # Write a line using a known pattern
     def generate_line(self, file_builder_obj):

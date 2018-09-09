@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbc7b004-5093-4c73-8c95-116b14c2fd96" name="Default Changelist" comment="Refactored dictionary and file building. Dictionary now builds at runtime based on pos tags in input data set. Creates word files if they do not already exist.">
-      <change beforePath="$PROJECT_DIR$/file_build.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_build.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/poem_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/poem_builder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,14 +74,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="5787" />
+          <entry key="py" value="6271" />
           <entry key="txt" value="376" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="376" />
-          <entry key="Python" value="5787" />
+          <entry key="Python" value="6271" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -111,13 +110,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poem_builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+            <state relative-caret-position="315">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="e#47#58#0" expanded="true" />
-                <marker date="1536510039596" expanded="true" signature="249:538" ph="..." />
-                <marker date="1536510039596" expanded="true" signature="2213:2222" ph="..." />
-                <marker date="1536510039596" expanded="true" signature="2213:2429" ph="..." />
+                <marker date="1536510769871" expanded="true" signature="249:642" ph="..." />
+                <marker date="1536510769871" expanded="true" signature="2683:2692" ph="..." />
+                <marker date="1536510769871" expanded="true" signature="2683:2899" ph="..." />
               </folding>
             </state>
           </provider>
@@ -362,13 +361,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poem_builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+        <state relative-caret-position="315">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="e#47#58#0" expanded="true" />
-            <marker date="1536510039596" expanded="true" signature="249:538" ph="..." />
-            <marker date="1536510039596" expanded="true" signature="2213:2222" ph="..." />
-            <marker date="1536510039596" expanded="true" signature="2213:2429" ph="..." />
+            <marker date="1536510769871" expanded="true" signature="249:642" ph="..." />
+            <marker date="1536510769871" expanded="true" signature="2683:2692" ph="..." />
+            <marker date="1536510769871" expanded="true" signature="2683:2899" ph="..." />
           </folding>
         </state>
       </provider>
