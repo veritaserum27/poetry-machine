@@ -32,7 +32,6 @@ class Poems:
                 else:
                     pattern += " " + str(i[1])
 
-
         # Check if we have this pattern
         new_pattern = True
         if len(self.line_patterns) > 0:
@@ -42,8 +41,7 @@ class Poems:
         if new_pattern:
             # Add this pattern to the list of known patterns
             self.line_patterns.append(pattern)
-        print("Patterns known:")
-        print(self.line_patterns)
+
 
     # Read patterns from a file
     def read_knowledge(self, file_name, file_builder_obj):
