@@ -7,7 +7,8 @@ import os.path
 import random
 
 class Poems:
-    # Grammar line patterns
+    # Grammar, line patterns
+    grammar = ""
     line_patterns = []
     pattern_dictionary = {
 
@@ -24,10 +25,8 @@ class Poems:
         self.pattern_dictionary[pattern] += 1
         #print("New count for pattern '" + pattern + "': " + str(self.pattern_dictionary[pattern]))
 
-
     # Extract words and patterns
     def knowledge_extractor(self, file_builder_obj, sentence):
-        # Tokenize and tag with parts of speech
         tokens = nltk.word_tokenize(sentence)
         tagged = nltk.pos_tag(tokens)
 
@@ -83,10 +82,34 @@ class Poems:
 
             # Write a line
             new_line = ""
-            for pos in self.line_patterns[rand_index].split():
+            index = 0
+            split_pattern = self.line_patterns[rand_index].split()
+            for pos in split_pattern:
+                # Check for det, noun agreement
+                if 'DT' in pos:
+                    # Find its noun
+                    itr = index + 1
+                    found = False
+                    while itr < len(split_pattern) and not found:
+                        #print(pos, split_pattern[itr])
+                        if 'NN' in split_pattern[itr]:
+                            found = True
+                            # If this is a singular noun
+                            if 'NNS' == split_pattern[itr]:
+                                pos = 'DT'
+                            elif split_pattern[itr] == 'NN':
+                                # Make DT singular
+                                pos = 'DT_Sing'
+                        #print(pos, split_pattern[itr])
+                        itr += 1
+                index += 1
+
+                #print("Choosing a " + pos)
                 # Choose word
                 new_word = file_builder_obj.choose_random_word(pos)
                 new_line += new_word + " "
+
+            new_line = new_line.capitalize()
             if new_line == "":
                 new_line = "EMPTY LINE"
             return new_line
@@ -103,6 +126,3 @@ class Poems:
             count += 1
 
 
-    # Poem Builder: uses patterns, arg is a FileBuilder object?
-
-    # Learn patterns/update patterns

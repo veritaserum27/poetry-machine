@@ -75,19 +75,40 @@ class FileBuilder:
 
         # Go through tagged words
         for pair in tagged:
-            # Get the file
-            # Add the key if it doesn't have these symbols
-            if pair[1] not in '.,!? _:;':
-                self.get_file(pair[1])
-
-            # Add the word if it doesn't have these symbols
-            if pair[0] not in '.,!? _:;':
-                word = pair[0]
-                # lowercase if not a proper noun
-                if word[0].isupper():
-                    if 'NNP' not in pair[1]:
-                        word = word.lower()
-                self.add_word(pair[1], word)
+            if pair[0] and pair[1] not in '.,!? _:;':
+                # Get the file
+                # If it's a DT, special rules
+                if 'DT' in pair[1]:
+                    #print('DT: ', pair[0])
+                    singular_dts = ['a', 'an', 'this', 'that']
+                    dt_sing_match = False
+                    for item in singular_dts:
+                        if pair[0] == item:
+                            dt_sing_match = True
+                    #print(dt_sing_match)
+                    if dt_sing_match:
+                        # Use DT tag for singular nouns:
+                        self.get_file('DT_Sing')
+                        word = pair[0]
+                        # lowercase
+                        if word[0].isupper():
+                                word = word.lower()
+                        self.add_word('DT_Sing', word)
+                    else:
+                        self.get_file(pair[1])
+                        word = pair[0]
+                        # lowercase
+                        if word[0].isupper():
+                            word = word.lower()
+                        self.add_word('DT', word)
+                else:
+                    self.get_file(pair[1])
+                    word = pair[0]
+                    # lowercase if not a proper noun
+                    if word[0].isupper():
+                        if 'NNP' not in pair[1]:
+                            word = word.lower()
+                    self.add_word(pair[1], word)
 
 
     # Find file line count
@@ -99,16 +120,17 @@ class FileBuilder:
     def choose_random_word(self, pos_tag):
         # Locate the correct file
         for key in self.file_dictionary.keys():
-            if key == pos_tag:
-                    # Make sure there is content in this file
-                    line_count = self.file_line_count(self.file_dictionary[pos_tag])
-                    if line_count > 1:
-                        # Get a random word from this file
-                        rand_number = random.randrange(1, line_count)
-                        word = linecache.getline(self.file_dictionary[pos_tag], rand_number)
-                        return word[:len(word) - 1]
-                    elif line_count == 1:
-                        word = linecache.getline(self.file_dictionary[pos_tag], 1)
-                        return word[:len(word) - 1]
-                    else:
-                        return 'ERROR: NO ' + pos_tag + ' WORDS STORED'
+            if pos_tag == key:
+                # Make sure there is content in this file
+                line_count = self.file_line_count(self.file_dictionary[pos_tag])
+                if line_count > 1:
+                    # Get a random word from this file
+                    rand_number = random.randrange(1, line_count)
+                    word = linecache.getline(self.file_dictionary[pos_tag], rand_number)
+                    return word[:len(word) - 1]
+                elif line_count == 1:
+                    word = linecache.getline(self.file_dictionary[pos_tag], 1)
+                    return word[:len(word) - 1]
+                else:
+                    return 'ERROR: NO ' + pos_tag + ' WORDS STORED'
+        return "ERROR " + pos_tag + " NOT FOUND"
