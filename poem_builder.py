@@ -26,10 +26,11 @@ class Poems:
 
         # Extract the pattern
         for i in tagged:
-            if len(pattern) == 0:
-                pattern += str(i[1])
-            else:
-                pattern += " " + str(i[1])
+            if str(i[1]) not in '.,!? _:;':
+                if len(pattern) == 0:
+                    pattern += str(i[1])
+                else:
+                    pattern += " " + str(i[1])
 
 
         # Check if we have this pattern
@@ -41,7 +42,8 @@ class Poems:
         if new_pattern:
             # Add this pattern to the list of known patterns
             self.line_patterns.append(pattern)
-
+        print("Patterns known:")
+        print(self.line_patterns)
 
     # Read patterns from a file
     def read_knowledge(self, file_name, file_builder_obj):
@@ -51,7 +53,7 @@ class Poems:
                 # Store the pattern of this line, but skip lines with just newline char
                 if len(line) > 1:
                     self.knowledge_extractor(file_builder_obj, line)
-            print(self.line_patterns)
+
 
     # Write a line using a known pattern
     def generate_line(self, file_builder_obj):
@@ -61,14 +63,9 @@ class Poems:
             rand_max = len(self.line_patterns) - 1
             rand_index = random.randrange(0, rand_max)
 
-            # Tokenize this pattern
-            tokens = nltk.word_tokenize(self.line_patterns[rand_index])
-
             # Write a line
             new_line = ""
-            for pos in tokens:
-                # Convert to string
-
+            for pos in self.line_patterns[rand_index].split():
                 # Choose word
                 new_word = file_builder_obj.choose_random_word(pos)
                 new_line += new_word + " "

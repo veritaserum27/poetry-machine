@@ -155,6 +155,10 @@ class FileBuilder:
         # If word not found, open file for writing
         if not found_word:
             word_file = open(self.file_dictionary[pos_tag], 'a')
+
+            # lowercase if not a proper noun
+            if 'NNP' not in pos_tag:
+                new_word.lower()
             word_file.write(new_word + '\n')
             word_file.close()
 
@@ -187,10 +191,12 @@ class FileBuilder:
         # Go through tagged words
         for pair in tagged:
             # Get the file
-            self.get_file(pair[1])
+            # Add the key if it doesn't have these symbols
+            if pair[1] not in '.,!? _:;':
+                self.get_file(pair[1])
 
             # Add the word if it doesn't have these symbols
-            if ',' or ' ' or '.' or '!' or '?' or ':' or ';' not in pair[0]:
+            if pair[0] not in '.,!? _:;':
                 self.add_word(pair[1], pair[0])
 
 
