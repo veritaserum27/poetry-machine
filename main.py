@@ -16,9 +16,7 @@ my_poem = poem_builder.Poems()
 my_poem.read_knowledge('./bad_poetry/vogonesque_samples.txt', my_files)
 
 # Write a poem
+print("I just read some bad poetry. Here's a new poem: \n")
 my_poem.generate_poem(my_files)
 
-#some_words = "A wolves give a good time"
-#tokens = nltk.word_tokenize(some_words)
-#tagged = nltk.pos_tag(tokens)
-#my_poem.check_DT_NN_agreement(tagged, 2)
+# Read good poetry

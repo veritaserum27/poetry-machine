@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbc7b004-5093-4c73-8c95-116b14c2fd96" name="Default Changelist" comment="\">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bad_poetry/vogonesque_samples.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bad_poetry/vogonesque_samples.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_build.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_build.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/poem_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/poem_builder.py" afterDir="false" />
     </list>
@@ -78,14 +75,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="12104" />
+          <entry key="py" value="13180" />
           <entry key="txt" value="454" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="454" />
-          <entry key="Python" value="12104" />
+          <entry key="Python" value="13180" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -105,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="285">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#48#59#0" expanded="true" />
               </folding>
@@ -117,15 +114,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/poem_builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="570">
+              <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
               <folding>
                 <element signature="e#74#85#0" expanded="true" />
-                <marker date="1536535756545" expanded="true" signature="566:718" ph="..." />
-                <marker date="1536535756545" expanded="true" signature="809:1050" ph="..." />
-                <marker date="1536535756545" expanded="true" signature="2317:2323" ph="..." />
-                <marker date="1536535756545" expanded="true" signature="4119:4128" ph="..." />
-                <marker date="1536535756545" expanded="true" signature="4119:4331" ph="..." />
+                <marker date="1536537455106" expanded="true" signature="562:714" ph="..." />
+                <marker date="1536537455106" expanded="true" signature="805:1046" ph="..." />
+                <marker date="1536537455106" expanded="true" signature="2126:2779" ph="..." />
+                <marker date="1536537455106" expanded="true" signature="3175:3181" ph="..." />
+                <marker date="1536537455106" expanded="true" signature="5063:5072" ph="..." />
+                <marker date="1536537455106" expanded="true" signature="5063:5275" ph="..." />
               </folding>
             </state>
           </provider>
@@ -167,8 +165,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/poems.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/file_build.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/poem_builder.py" />
       </list>
     </option>
@@ -406,8 +404,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="285">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#48#59#0" expanded="true" />
           </folding>
@@ -416,15 +414,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/poem_builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="570">
+          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
           <folding>
             <element signature="e#74#85#0" expanded="true" />
-            <marker date="1536535756545" expanded="true" signature="566:718" ph="..." />
-            <marker date="1536535756545" expanded="true" signature="809:1050" ph="..." />
-            <marker date="1536535756545" expanded="true" signature="2317:2323" ph="..." />
-            <marker date="1536535756545" expanded="true" signature="4119:4128" ph="..." />
-            <marker date="1536535756545" expanded="true" signature="4119:4331" ph="..." />
+            <marker date="1536537455106" expanded="true" signature="562:714" ph="..." />
+            <marker date="1536537455106" expanded="true" signature="805:1046" ph="..." />
+            <marker date="1536537455106" expanded="true" signature="2126:2779" ph="..." />
+            <marker date="1536537455106" expanded="true" signature="3175:3181" ph="..." />
+            <marker date="1536537455106" expanded="true" signature="5063:5072" ph="..." />
+            <marker date="1536537455106" expanded="true" signature="5063:5275" ph="..." />
           </folding>
         </state>
       </provider>

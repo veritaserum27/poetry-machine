@@ -7,9 +7,9 @@ import os.path
 import random
 
 class Poems:
-    # Grammar, line patterns
-    grammar = ""
+    # line patterns
     line_patterns = []
+    top_patterns = []
     pattern_dictionary = {
 
     }
@@ -62,6 +62,31 @@ class Poems:
             self.add_pattern_dictionary(pattern)
 
 
+    # Find the top five most frequent patterns in the dictionary and store in top_patterns
+    def find_top_patterns(self):
+        count = 0
+        max_freq = 0
+        self.top_patterns = []
+
+        # Find max
+        for key in self.pattern_dictionary:
+            if max_freq < self.pattern_dictionary[key]:
+                max_freq = self.pattern_dictionary[key]
+
+        while count < 5:
+            # Add patterns to top_patterns
+            for key in self.pattern_dictionary:
+                # If this pattern has max_freq
+                if(self.pattern_dictionary[key] == max_freq):
+                    # add it
+                    if count < 5:
+                        self.top_patterns.append(key)
+                        count += 1
+            # Decrement max_freq and increment count
+            if max_freq > 1:
+                max_freq -= 1
+
+
     # Read patterns from a file
     def read_knowledge(self, file_name, file_builder_obj):
         if os.path.isfile(file_name):
@@ -74,10 +99,13 @@ class Poems:
 
     # Write a line using a known pattern
     def generate_line(self, file_builder_obj):
+        # Find the top patterns
+        self.find_top_patterns()
+
         # If it knows at least one pattern
-        if len(self.line_patterns) != 0:
-            # Choose a random pattern
-            rand_max = len(self.line_patterns) - 1
+        if len(self.top_patterns) != 0:
+            # Choose a random pattern from the top patterns
+            rand_max = len(self.top_patterns) - 1
             rand_index = random.randrange(0, rand_max)
 
             # Write a line
