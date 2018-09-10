@@ -75,7 +75,7 @@ class FileBuilder:
 
         # Go through tagged words
         for pair in tagged:
-            if pair[0] and pair[1] not in '.,!? _:;':
+            if pair[0] and pair[1] not in '.,!? _:;()':
                 # Get the file
                 # If it's a DT, special rules
                 if 'DT' in pair[1]:
@@ -100,7 +100,7 @@ class FileBuilder:
                         # lowercase
                         if word[0].isupper():
                             word = word.lower()
-                        self.add_word('DT', word)
+                        self.add_word(pair[1], word)
                 else:
                     self.get_file(pair[1])
                     word = pair[0]

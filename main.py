@@ -19,4 +19,10 @@ my_poem.read_knowledge('./bad_poetry/vogonesque_samples.txt', my_files)
 print("I just read some bad poetry. Here's a new poem: \n")
 my_poem.generate_poem(my_files)
 
+# Read better poetry
+my_poem.read_knowledge('./good_poetry/walt_whitman.txt', my_files)
+
+print("\n\nI just read some good poetry. Here's a new, hopefully better poem:\n")
+my_poem.generate_poem(my_files)
+
 # Read good poetry

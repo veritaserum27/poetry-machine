@@ -128,13 +128,14 @@ class Poems:
                             elif split_pattern[itr] == 'NN':
                                 # Make DT singular
                                 pos = 'DT_Sing'
-                        #print(pos, split_pattern[itr])
                         itr += 1
                 index += 1
 
-                #print("Choosing a " + pos)
                 # Choose word
-                new_word = file_builder_obj.choose_random_word(pos)
+                new_word = ""
+                while new_word == "":
+                    new_word = file_builder_obj.choose_random_word(pos)
+                #print("Chose: " + new_word)
                 new_line += new_word + " "
 
             new_line = new_line.capitalize()
